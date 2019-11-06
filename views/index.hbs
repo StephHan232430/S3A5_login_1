@@ -1,0 +1,41 @@
+<div class="container py-5">
+  {{#unless infoStatus}}
+  <div class="row text-center">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h1>Account Login</h1>
+        </div>
+
+        <div class="card-body">
+          <form method="POST" , action="/">
+            <div class="form-group">
+              <label for="inputEmail"></label>
+              <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email"
+                value="{{info.email}}">
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword"></label>
+              <input type="text" class="form-control" name="password" id="inputPassword" placeholder="Password"
+                value="{{info.password}}">
+            </div>
+
+            {{#if wrongInfo}}
+            <div class="alert alert-danger" role="alert">
+              <span class="mr-2">{{wrongInfo}}</span>
+            </div>
+            {{/if}}
+
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/unless}}
+
+  {{#if infoStatus}}
+  <h1>Welcome back, {{infoStatus.firstName}}!</h1>
+  {{/if}}
+</div>
