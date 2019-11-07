@@ -2,7 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const checkInfo = require('./check_info')
+const login = require('./login')
 const app = express()
 const port = 3000
 
@@ -22,13 +22,13 @@ app.get('/', (req, res) => {
 // 若回傳內容為錯誤資訊字串，則將字串另存於wrongInfo後，渲染index.hbs
 app.post('/', (req, res) => {
   const info = req.body
-  let infoStatus = checkInfo(info)
-  let wrongInfo = null
-  if (infoStatus === 'Username/Password 錯誤') {
-    wrongInfo = infoStatus
-    infoStatus = false
+  let matchedItem = login(info.email, info.password)
+  let error = null
+  if (matchedItem === 'Username/Password 錯誤') {
+    error = matchedItem
+    matchedItem = false
   }
-  res.render('index', { info, infoStatus, wrongInfo })
+  res.render('index', { info, matchedItem, error })
 })
 
 // 啟動並監聽伺服器

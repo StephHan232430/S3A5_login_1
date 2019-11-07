@@ -1,5 +1,5 @@
 <div class="container py-5">
-  {{#unless infoStatus}}
+  {{#unless matchedItem}}
   <div class="row text-center">
     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
       <div class="card">
@@ -21,9 +21,9 @@
                 value="{{info.password}}">
             </div>
 
-            {{#if wrongInfo}}
+            {{#if error}}
             <div class="alert alert-danger" role="alert">
-              <span class="mr-2">{{wrongInfo}}</span>
+              <span class="mr-2">{{error}}</span>
             </div>
             {{/if}}
 
@@ -35,7 +35,7 @@
   </div>
   {{/unless}}
 
-  {{#if infoStatus}}
-  <h1>Welcome back, {{infoStatus.firstName}}!</h1>
+  {{#if matchedItem}}
+  <h1>Welcome back, {{matchedItem.firstName}}!</h1>
   {{/if}}
 </div>
